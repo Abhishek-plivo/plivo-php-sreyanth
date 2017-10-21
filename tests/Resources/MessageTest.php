@@ -18,7 +18,7 @@ class MessageTest extends BaseTestCase {
 
     public function testMessageCreateException()
     {
-        $this->setExpectedException('Plivo\Exceptions\PlivoValidationException');
+        $this->expectPlivoException('Plivo\Exceptions\PlivoValidationException');
         $body = file_get_contents(__DIR__ . '/../Mocks/messageSendResponse.json');
 
         $this->mock(new PlivoResponse(new PlivoRequest(),200, $body));

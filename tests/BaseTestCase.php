@@ -50,4 +50,17 @@ class BaseTestCase extends TestCase
     {
         $this->testClient->mock($response);
     }
+
+    /**
+     * @param $response
+     */
+    public function expectPlivoException($exception)
+    {
+        if (version_compare(phpversion(), '7.0.0', '<')) {
+            self::setExpectedException($exception);
+        } else {
+            self::expectException($exception);
+        }
+
+    }
 }
