@@ -23,7 +23,10 @@ class signatureValidation
       $uri = utf8_encode($uri);
 
       $parsed_uri = parse_url($uri);
-      $base_url = $parsed_uri['scheme'].'://'.$parsed_uri['host'].''.$parsed_uri['path'];
+
+      $base_url = $parsed_uri['scheme'].'://'.$parsed_uri['host'];
+      if (isset($parsed_uri['path']))
+        $base_url = $parsed_uri['scheme'].'://'.$parsed_uri['host'].''.$parsed_uri['path'];
 
       $hmac = hash_hmac('SHA256', $base_url.$nonce, $auth_token, true);
       $authentication_string = base64_encode($hmac);
